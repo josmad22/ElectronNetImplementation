@@ -1,7 +1,13 @@
+using ElectronNET.API;
+using ElectronNET.API.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.WebHost.UseElectron(args);
+builder.Services.AddElectron();
 
 var app = builder.Build();
 
@@ -23,5 +29,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+await app.StartAsync();
+// Open the Electron-Window here
+await Electron.WindowManager.CreateWindowAsync();
+app.WaitForShutdown();
 
 app.Run();
