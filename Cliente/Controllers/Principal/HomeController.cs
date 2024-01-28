@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Cliente.Controllers
+namespace Cliente.Controllers.Principal
 {
     public class HomeController : Controller
     {
@@ -14,7 +14,7 @@ namespace Cliente.Controllers
         }
 
         public IActionResult Index()
-        {
+        {   
             return View();
         }
 

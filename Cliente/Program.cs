@@ -36,4 +36,4 @@ await app.StartAsync();
 await Electron.WindowManager.CreateWindowAsync();
 app.WaitForShutdown();
 
-app.Run();
+//app.Run();
