@@ -32,8 +32,27 @@ app.MapControllerRoute(
 
 
 await app.StartAsync();
-// Open the Electron-Window here
-await Electron.WindowManager.CreateWindowAsync();
+
+// Configuracion de la aplicacion a realizarse
+BrowserWindowOptions options = new BrowserWindowOptions();
+
+bool enableDevTools = false;
+options.AutoHideMenuBar = true;
+
+Console.WriteLine("HOOOOOLA");
+Console.WriteLine(app.Environment.EnvironmentName);
+if (app.Environment.IsDevelopment())
+{
+    enableDevTools = true;
+    options.AutoHideMenuBar = false;
+}
+
+options.WebPreferences = new WebPreferences() {
+    NodeIntegration = false,
+    DevTools = enableDevTools
+};
+
+await Electron.WindowManager.CreateWindowAsync(options);
 app.WaitForShutdown();
 
 //app.Run();
